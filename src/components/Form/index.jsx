@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 import React from 'react';
 import './style.css';
 
@@ -12,12 +13,19 @@ function Form() {
     e.preventDefault();
 
     const dados = {
-        nome, 
-        qtd_estoque,
-        preco
-    };
+			criador: 'Seu Nome',
+      nome, 
+      qtd_estoque,
+      preco
+  };
 
-    console.log(dados);
+    axios.post('https://5b8f-200-129-62-18.sa.ngrok.io/products', dados).then((response) => {
+      console.log(response);
+      
+      if (response.status === 200) {
+        alert('Produto criado');
+      }
+	  });
   }
 
   return (
